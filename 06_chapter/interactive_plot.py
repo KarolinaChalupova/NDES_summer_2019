@@ -184,30 +184,54 @@ def plot_one(kernel:str,
         raise ValueError('Unsupported kernel name %s' %kernel)
 
 
-def interact_plot_two():
-    interact(plot_two, 
-             right = ['tricube','epanechnikov','gaussian','knn'],
-             left = ['tricube','epanechnikov','gaussian','knn'],
-             k_left=widgets.IntSlider(min=1,max=100,step=1,value=10),
-             k_right=widgets.IntSlider(min=1,max=100,step=1,value=10),
-             lmbda_left=(0.02,1.0,0.1),
-             lmbda_right=(0.02,1.0,0.1),
-             idx_x0=widgets.IntSlider(min=1,max=1000,step=1,value=500),
-             show_true_y=False,
+def interact_plot_two(
+            right = ['tricube','epanechnikov','gaussian','knn'],
+            left = ['tricube','epanechnikov','gaussian','knn'],
+            k_left=widgets.IntSlider(min=1,max=100,step=1,value=10),
+            k_right=widgets.IntSlider(min=1,max=100,step=1,value=10),
+            lmbda_left=(0.02,3.0,0.1),
+            lmbda_right=(0.02,3.0,0.1),
+            idx_x0=widgets.IntSlider(min=1,max=1000,step=1,value=500),
+            show_true_y=False,
             show_estimated_y=False, 
-              seed=widgets.IntSlider(min=1,max=42,step=1,value=42),
+            seed=widgets.IntSlider(min=1,max=42,step=1,value=42),
             x_sample=fixed(x_sample),y_sample=fixed(y_sample),
             pol_order_left=widgets.IntSlider(min=0,max=2,step=1,value=0),
-             pol_order_right=widgets.IntSlider(min=0,max=2,step=1,value=0))
+            pol_order_right=widgets.IntSlider(min=0,max=2,step=1,value=0)):
+    
+    interact(plot_two, 
+            right = right,
+            left = left,
+            k_left=k_left,
+            k_right=k_right,
+            lmbda_left=lmbda_left,
+            lmbda_right=lmbda_right,
+            idx_x0=idx_x0,
+            show_true_y=show_true_y,
+            show_estimated_y=show_estimated_y, 
+            seed=seed,
+            x_sample=x_sample,
+            y_sample=y_sample,
+            pol_order_left=pol_order_left,
+            pol_order_right=pol_order_right)
 
-def interact_plot_one():
-    interact(plot_one, 
-             kernel = ['tricube','epanechnikov','gaussian','knn'],
-             k=widgets.IntSlider(min=1,max=100,step=1,value=10),
-             lmbda=(0.02,1.0,0.01),
-             idx_x0=widgets.IntSlider(min=1,max=1000,step=1,value=500),
-             show_true_y=False,
+def interact_plot_one(
+            kernel = ['tricube','epanechnikov','gaussian','knn'],
+            k=widgets.IntSlider(min=1,max=100,step=1,value=10),
+            lmbda=(0.02,3.0,0.01),
+            idx_x0=widgets.IntSlider(min=1,max=1000,step=1,value=500),
+            show_true_y=False,
             show_estimated_y=False,
             seed=widgets.IntSlider(min=1,max=42,step=1,value=42),
             x_sample=fixed(x_sample),y_sample=fixed(y_sample),
-            pol_order = widgets.IntSlider(min=0,max=2,step=1,value=0))
+            pol_order = widgets.IntSlider(min=0,max=2,step=1,value=0)):
+    interact(plot_one, 
+            kernel = kernel,
+            k=k,
+            lmbda=lmbda,
+            idx_x0=idx_x0,
+            show_true_y=show_true_y,
+            show_estimated_y=show_estimated_y,
+            seed=seed,
+            x_sample=x_sample,y_sample=y_sample,
+            pol_order = pol_order)
