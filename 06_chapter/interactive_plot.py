@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 import random
 import numpy as np
 
-
 from ipywidgets import interact, interactive, fixed, interact_manual
 import ipywidgets as widgets
 
@@ -184,3 +183,31 @@ def plot_one(kernel:str,
     else: 
         raise ValueError('Unsupported kernel name %s' %kernel)
 
+
+def interact_plot_two():
+    interact(plot_two, 
+             right = ['tricube','epanechnikov','gaussian','knn'],
+             left = ['tricube','epanechnikov','gaussian','knn'],
+             k_left=widgets.IntSlider(min=1,max=100,step=1,value=10),
+             k_right=widgets.IntSlider(min=1,max=100,step=1,value=10),
+             lmbda_left=(0.02,1.0,0.1),
+             lmbda_right=(0.02,1.0,0.1),
+             idx_x0=widgets.IntSlider(min=1,max=1000,step=1,value=500),
+             show_true_y=False,
+            show_estimated_y=False, 
+              seed=widgets.IntSlider(min=1,max=42,step=1,value=42),
+            x_sample=fixed(x_sample),y_sample=fixed(y_sample),
+            pol_order_left=widgets.IntSlider(min=0,max=2,step=1,value=0),
+             pol_order_right=widgets.IntSlider(min=0,max=2,step=1,value=0))
+
+def interact_plot_one():
+    interact(plot_one, 
+             kernel = ['tricube','epanechnikov','gaussian','knn'],
+             k=widgets.IntSlider(min=1,max=100,step=1,value=10),
+             lmbda=(0.02,1.0,0.01),
+             idx_x0=widgets.IntSlider(min=1,max=1000,step=1,value=500),
+             show_true_y=False,
+            show_estimated_y=False,
+            seed=widgets.IntSlider(min=1,max=42,step=1,value=42),
+            x_sample=fixed(x_sample),y_sample=fixed(y_sample),
+            pol_order = widgets.IntSlider(min=0,max=2,step=1,value=0))
