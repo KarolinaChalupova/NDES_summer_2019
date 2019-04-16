@@ -35,6 +35,12 @@ def predict(point:float, data_x, data_y, k, polynomial_order=0)-> float:
         B = np.append(np.ones([len(data_x), 1]),data_x.reshape((len(data_x),1)), axis=1)
         b = np.array([1,point])
         return b@np.linalg.inv((B.T@W@B))@(B.T@W@data_y)
+    elif polynomial_order == 2:
+        W = np.diag(k)
+        B = np.append(np.ones([len(data_x), 1]),data_x.reshape((len(data_x),1)), axis=1)
+        B = np.append(B,data_x.reshape((len(data_x),1))*data_x.reshape((len(data_x),1)),axis=1)
+        b = np.array([1,point,point*point])
+        return b@np.linalg.inv((B.T@W@B))@(B.T@W@data_y)
 
 # DEFINITIONS OF KERNELS
 # ----------------------------------------------------------------------------    
