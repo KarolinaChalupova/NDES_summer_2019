@@ -1,4 +1,4 @@
-name: base
+name: NDES_summer_2019_06_chapter
 channels:
   - defaults
 dependencies:
